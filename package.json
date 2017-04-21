@@ -1,0 +1,37 @@
+{
+  "//1": "describes your app and its dependencies",
+  "//2": "https://docs.npmjs.com/files/package.json",
+  "//3": "updating this file will download and update your packages",
+  "name": "hypertweet-glitch",
+  "version": "0.0.1",
+  "description": "Hyper fast tweet stream UI",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "bankai": "^7.1.1",
+    "choo": "^5.2.0",
+    "choo-log": "^6.1.1",
+    "event-source-stream": "^1.5.0",
+    "hypercore": "^5.11.2",
+    "hyperdiscovery": "^6.0.1",
+    "hypertweet": "^0.1.0",
+    "moment": "^2.18.1",
+    "random-access-memory": "^2.4.0",
+    "sheetify": "^6.0.1",
+    "tachyons": "^4.7.1"
+  },
+  "engines": {
+    "node": "6.10.x"
+  },
+  "repository": {
+    "url": "https://github.com/joehand/hypertweet-glitch"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "dat"
+  ]
+}
