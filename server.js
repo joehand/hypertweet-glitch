@@ -27,9 +27,8 @@ createFeed(function (err, feed) {
       var start = feed.length > 15 ? feed.length - 10 : 0
       console.log(start, feed.length)
       var stream = feed.createReadStream({live: true, start: start})
-      // console.log(feed)
       stream.on('data', function (data) {
-        console.log('tweet sent')
+        // console.log('tweet sent')
         res.write('data: ' + JSON.stringify(data) + '\n\n')
       })
     }
@@ -52,7 +51,10 @@ function createFeed (cb) {
     })
   } else {
     // creating new stream via twitter
-    hypertweet('.data', function (err, feed) {
+    hypertweet(ram, {
+      // CHANGE ME and see what happens!
+      streamUrl: 'https://stream.twitter.com/1.1/statuses/filter.json?track=javascript,npm,glitch.com,@glitch'
+    }, function (err, feed) {
       if (err) return console.error(err)
       console.log('feed key', feed.key.toString('hex'))
       cb(null, feed)
