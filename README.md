@@ -1,6 +1,8 @@
 Welcome to the HyperTweet Glitch BETALPHA
 =========================
 
+https://github.com/joehand/hypertweet-glitch
+
 A fun project using glitch and [hypertweet](https://github.com/joehand/hypertweet). Displays your tweets in realtime. Remix and change how you display your tweets. The css world is your oyster.
 
 Made possible by the awesome work of the [Dat project](https://datproject.org).

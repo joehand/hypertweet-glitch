@@ -27,6 +27,7 @@ function mainView (state, emit) {
       <main class="vh-100 w-70 fl pv4 overflow-y-scroll">
         <div class="mw6 center">
         ${state.tweets.slice(0).reverse().map((tweet) => {
+          // o/ so lazy + slow
           return aTweet(tweet)
         })}
         </div>
