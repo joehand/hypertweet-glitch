@@ -10,6 +10,9 @@ var clientPath = path.join('public', 'client.js')
 var assets = bankai(clientPath, {js: {t: ['sheetify/transform']}})
 
 var key = process.env.KEY
+var storage = ram // ram = memory, set to '.data' to persist to glitch (or key will change)
+// Change streamUrl to see other kinds of tweets! 
+var streamUrl = process.env.STREAM_URL || 'https://stream.twitter.com/1.1/statuses/filter.json?track=javascript,npm,glitch.com,@glitch'
 
 createFeed(function (err, feed) {
   http.createServer(function (req, res) {
@@ -27,6 +30,11 @@ createFeed(function (err, feed) {
       var start = feed.length > 15 ? feed.length - 10 : 0
       console.log(start, feed.length)
       var stream = feed.createReadStream({live: true, start: start})
+      res.write('data: ' + JSON.stringify({
+        url: streamUrl,
+        key: !!key,
+        info: true
+      }) + '\n\n')
       stream.on('data', function (data) {
         // console.log('tweet sent')
         res.write('data: ' + JSON.stringify(data) + '\n\n')
@@ -39,7 +47,7 @@ createFeed(function (err, feed) {
 function createFeed (cb) {
   if (key) {
     // Read existing key + stream via network
-    var feed = hypercore(ram, key, {sparse: true, valueEncoding: 'json'})
+    var feed = hypercore(storage, key, {sparse: true, valueEncoding: 'json'})
     feed.ready(function () {
       var swarm = discovery(feed) // connect to peers via discovery-swarm
       console.log('connecting to', feed.key.toString('hex'))
@@ -51,9 +59,8 @@ function createFeed (cb) {
     })
   } else {
     // creating new stream via twitter
-    hypertweet(ram, {
-      // CHANGE ME and see what happens!
-      streamUrl: 'https://stream.twitter.com/1.1/statuses/filter.json?track=javascript,npm,glitch.com,@glitch'
+    hypertweet(storage, {
+      streamUrl: streamUrl
     }, function (err, feed) {
       if (err) return console.error(err)
       console.log('feed key', feed.key.toString('hex'))

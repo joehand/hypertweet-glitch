@@ -14,6 +14,7 @@ function Feed (state, emit) {
   var tweets = state.tweets
   return html`
     <main class="vh-100 w-70 fl pv4 overflow-y-scroll"> 
+      <h3 class="tc w-100 f5">${state.feedName}</h3>
       <div class="mw6 center">
       ${tweets.map((tweet) => {
         return aTweet(tweet)

@@ -10,11 +10,15 @@ Made possible by the awesome work of the [Dat project](https://datproject.org).
 Setup a Remix
 ------------
 
-Super easy to remix and stream your own twitter feed! Check out the `.sample.env` for more details on what you need.
+Super easy to remix and stream your own twitter feed! Check out the `.env` for more details on what you need.
+
+Change the streaming URL in `.env` to track other keywords or see your own feed.
 
 ### Option 1: Glitch Storage
 
-Store your tweets on glitch. This is mostly a temporary solution and the glitch storage can fill up quickly. Get a Twitter API token and get started!
+Get a Twitter API token and get started! You can stream lots of types of tweets once you get a token. By default, tweets are stored in memory and not meant to be saved anywhere.
+
+You can store your tweets on glitch, change `storage` to `.data` in the `server.js` file. This is mostly a temporary solution and the glitch storage can fill up quickly. 
 
 Your hypercore tweet feed is stored in the `.data` folder which is not shared when you remix. **Warning:** Glitch goes a bit crazy when you run out of storage and deletes any files you edit.
 
